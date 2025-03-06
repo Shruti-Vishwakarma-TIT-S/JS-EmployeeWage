@@ -280,3 +280,53 @@ function validateName(name) {
   validateName("Amitabh"); 
   validateName("");        
     
+// UC14 Validate using Regex
+// Function to validate employee details
+function validateEmployeeDetails(id, salary, gender, date) {
+    try {
+      // Regular expressions for validation
+      const idPattern = /^[1-9]\d*$/; 
+      const salaryPattern = /^[1-9]\d*$/; 
+      const genderPattern = /^[MF]$/; 
+  
+      // Validate employee ID
+      if (!idPattern.test(id)) {
+        throw new Error("Invalid Employee ID. It must be a positive non-zero number.");
+      }
+  
+      // Validate salary
+      if (!salaryPattern.test(salary)) {
+        throw new Error("Invalid Salary. It must be a positive non-zero number.");
+      }
+  
+      // Validate gender
+      if (!genderPattern.test(gender)) {
+        throw new Error("Invalid Gender. It must be 'M' or 'F'.");
+      }
+  
+      // Validate date (not in the future)
+      const currentDate = new Date();
+      const employeeDate = new Date(date);
+  
+      if (isNaN(employeeDate.getTime())) {
+        throw new Error("Invalid Date. Ensure it is a valid date format.");
+      }
+  
+      if (employeeDate > currentDate) {
+        throw new Error("Invalid Date. Date cannot be in the future.");
+      }
+  
+      console.log("Employee details are valid!");
+    } catch (error) {
+      // Handle any validation errors
+      console.error("Validation Error:", error.message);
+    }
+  }
+  
+  // Test the function with different inputs
+  validateEmployeeDetails("101", "50000", "M", "2023-05-10"); 
+  validateEmployeeDetails("0", "50000", "M", "2023-05-10"); 
+  validateEmployeeDetails("101", "0", "M", "2023-05-10"); 
+  validateEmployeeDetails("101", "50000", "X", "2023-05-10"); // Invalid Gender
+  validateEmployeeDetails("101", "50000", "F", "2025-01-01"); // Invalid Date
+  
