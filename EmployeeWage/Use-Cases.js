@@ -186,4 +186,42 @@ let averageFullTimeWage =
   fullTimeWages.reduce((sum, wage) => sum + wage, 0) / fullTimeWages.length;
 
 console.log("Average Full-Time Wage:", averageFullTimeWage);
+
+// Example data: Array of objects with day, hours worked, and wage earned
+let dailyDataArray = [
+    { day: 1, hoursWorked: 8, wageEarned: 160 },
+    { day: 2, hoursWorked: 4, wageEarned: 80 },
+    { day: 3, hoursWorked: 0, wageEarned: 0 },
+    { day: 4, hoursWorked: 8, wageEarned: 160 },
+    { day: 5, hoursWorked: 4, wageEarned: 80 },
+  ];
+  
+// a. Calculate total wage and total hours worked using arrow functions
+totalWage = dailyDataArray.reduce((total, record) => total + record.wageEarned, 0);
+totalHours = dailyDataArray.reduce((total, record) => total + record.hoursWorked, 0);
+  
+console.log("Total Wage:", totalWage);
+console.log("Total Hours Worked:", totalHours);
+  
+// b. Show the full working days using forEach
+console.log("Full Working Days:");
+dailyDataArray.forEach((record) => {
+    if (record.hoursWorked === 8) {
+      console.log(`Day ${record.day}: ${record.hoursWorked} hours, $${record.wageEarned}`);
+    }
+});
+  
+// c. Show part working days using map by reducing to string array
+partWorkingDays = dailyDataArray
+  .filter((record) => record.hoursWorked === 4)
+  .map((record) => `Day ${record.day}`);
+  
+console.log("Part Working Days:", partWorkingDays);
+  
+// d. Show no working days using map function
+noWorkingDays = dailyDataArray
+   .filter((record) => record.hoursWorked === 0)
+   .map((record) => `Day ${record.day}`);
+  
+console.log("No Working Days:", noWorkingDays);
   
