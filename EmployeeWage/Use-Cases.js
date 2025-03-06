@@ -85,3 +85,42 @@ console.log(`Total Monthly Wages: $${totalWages}`);
 
 // UC6 Log the Daily Wage Array
 console.log("Daily Wage Details:", dailyWageArray);
+
+// UC7 Use Array Helper Functions
+// Array to store daily wages (sample structure for explanation)
+dailyWageArray = [
+    { day: 1, dailyWage: 80 },
+    { day: 2, dailyWage: 160 },
+    { day: 3, dailyWage: 40 },
+    { day: 4, dailyWage: 160 },
+    { day: 5, dailyWage: 0 },
+  ];
+  
+  // a. Calculate total wage using reduce method
+  let totalWage = dailyWageArray.reduce((total, record) => total + record.dailyWage, 0);
+  console.log("Total Wage:", totalWage);
+  
+  // b. Show the Day along with Daily Wage using Array map helper function
+  let dayWageMap = dailyWageArray.map(record => `Day ${record.day}: $${record.dailyWage}`);
+  console.log("Day and Wages:", dayWageMap);
+  
+  // c. Show Days when Full Time wage of 160 were earned using filter function
+  let fullTimeDays = dailyWageArray.filter(record => record.dailyWage === 160).map(record => `Day ${record.day}`);
+  console.log("Days with Full-Time Wage:", fullTimeDays);
+  
+  // d. Find the first occurrence when Full Time Wage was earned using find function
+  let firstFullTime = dailyWageArray.find(record => record.dailyWage === 160);
+  console.log("First Full-Time Wage Occurrence:", firstFullTime ? `Day ${firstFullTime.day}` : "Not Found");
+  
+  // e. Check if Every Element of Full Time Wage is truly holding Full Time wage
+  let isAllFullTime = dailyWageArray.every(record => record.dailyWage === 160);
+  console.log("All are Full-Time Wages:", isAllFullTime);
+  
+  // f. Check if there is any Part Time Wage
+  let hasPartTime = dailyWageArray.some(record => record.dailyWage === 80);
+  console.log("Has Part-Time Wage:", hasPartTime);
+  
+  // g. Find the number of days the Employee Worked
+  let workedDays = dailyWageArray.filter(record => record.dailyWage > 0).length;
+  console.log("Number of Days Worked:", workedDays);
+  
