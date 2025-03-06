@@ -16,6 +16,7 @@ if (employeeStatus === PRESENT) {
   console.log("Employee is Absent");
 }
 
+// UC3 - Refactor code to get working hours
 // Constants for work hours and wage per hour
 const PART_TIME_HOURS = 4;
 const FULL_TIME_HOURS = 8;
