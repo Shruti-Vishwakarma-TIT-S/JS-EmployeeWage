@@ -21,7 +21,8 @@ if (employeeStatus === PRESENT) {
 const PART_TIME_HOURS = 4;
 const FULL_TIME_HOURS = 8;
 const WAGE_PER_HOUR = 20;
-const WORKING_DAYS_IN_MONTH = 20
+const MAX_WORKING_HOURS = 160;
+const MAX_WORKING_DAYS = 20;
 
 // Function to determine work hours based on work type
 function getWorkHours(workType) {
@@ -38,27 +39,39 @@ function getWorkHours(workType) {
   }
 }
 
-// Variable to store total monthly wage
-let totalMonthlyWage = 0;
+// UC5 - Calculate wages till 160 hours and 20 days
+// Variables to track total working hours, days, and wages
+let totalWorkingHours = 0;
+let totalWorkingDays = 0;
+let totalWages = 0;
 
-// UC4 - Refactor to find wages of minimum 20 working days
-// Loop through each working day
-for (let day = 1; day <= WORKING_DAYS_IN_MONTH; day++) {
-  // Generate a random work type (0, 1, or 2) for each day
+// While loop to calculate wages till conditions are met
+while (totalWorkingHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
+  // Increment the day count
+  totalWorkingDays++;
+
+  // Generate a random work type (0, 1, or 2)
   let workType = Math.floor(Math.random() * 3);
 
   // Get the work hours for the day
-  let workHours = getWorkHours(workType);
+  let dailyHours = getWorkHours(workType);
 
-  // Calculate daily wage and add it to the total monthly wage
-  let dailyWage = workHours * WAGE_PER_HOUR;
-  totalMonthlyWage += dailyWage;
+  // Add the daily hours to total working hours
+  totalWorkingHours += dailyHours;
+
+  // Calculate the daily wage
+  let dailyWage = dailyHours * WAGE_PER_HOUR;
+
+  // Add the daily wage to total wages
+  totalWages += dailyWage;
 
   // Log daily details (optional)
   console.log(
-    `Day ${day}: Worked ${workHours} hours. Daily wage: $${dailyWage}`
+    `Day ${totalWorkingDays}: Worked ${dailyHours} hours. Daily wage: $${dailyWage}. Total hours: ${totalWorkingHours}`
   );
 }
 
-// Log the total wage for the month
-console.log("Total monthly wage: $" + totalMonthlyWage);
+// Log final details
+console.log(`Total Working Days: ${totalWorkingDays}`);
+console.log(`Total Working Hours: ${totalWorkingHours}`);
+console.log(`Total Monthly Wages: $${totalWages}`);
