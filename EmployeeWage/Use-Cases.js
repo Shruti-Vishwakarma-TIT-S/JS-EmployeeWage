@@ -254,4 +254,29 @@ let employeePayrollDataArray = [
       `Name: ${employee.name}, Gender: ${employee.gender}, Address: ${employee.address}, Start Date: ${employee.startDate.toDateString()}`
     )
   );
+
+// UC13 Function to validate name
+function validateName(name) {
+    try {
+      // Regular expression to check if name starts with a capital letter and has at least 3 characters
+      const namePattern = /^[A-Z][a-zA-Z]{2,}$/;
   
+      // Validate the name against the regex pattern
+      if (namePattern.test(name)) {
+        console.log(`Valid name: ${name}`);
+      } else {
+        console.log(`Invalid name: ${name}. Ensure it starts with a capital letter and has at least 3 characters.`);
+      }
+    } catch (error) {
+      // Handle any unexpected errors
+      console.error("An error occurred during name validation:", error.message);
+    }
+  }
+  
+  // Test the function with valid and invalid names
+  validateName("Rajesh"); 
+  validateName("rajesh"); 
+  validateName("An");     
+  validateName("Amitabh"); 
+  validateName("");        
+    
