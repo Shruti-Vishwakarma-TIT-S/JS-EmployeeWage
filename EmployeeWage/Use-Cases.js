@@ -187,7 +187,7 @@ let averageFullTimeWage =
 
 console.log("Average Full-Time Wage:", averageFullTimeWage);
 
-// Example data: Array of objects with day, hours worked, and wage earned
+// Array of objects with day, hours worked, and wage earned
 let dailyDataArray = [
     { day: 1, hoursWorked: 8, wageEarned: 160 },
     { day: 2, hoursWorked: 4, wageEarned: 80 },
@@ -224,4 +224,34 @@ noWorkingDays = dailyDataArray
    .map((record) => `Day ${record.day}`);
   
 console.log("No Working Days:", noWorkingDays);
+
+// UC12 Employee Payroll Data with Indian names and addresses
+let employeePayrollDataArray = [
+    { id: 1, name: "Rajesh Sharma", gender: "Male", address: "Mumbai, Maharashtra", startDate: new Date("2023-01-15"), hoursWorked: 8, wageEarned: 160 },
+    { id: 2, name: "Pooja Mehra", gender: "Female", address: "Delhi, Delhi", startDate: new Date("2023-02-01"), hoursWorked: 4, wageEarned: 80 },
+    { id: 3, name: "Vikram Reddy", gender: "Male", address: "Hyderabad, Telangana", startDate: new Date("2023-03-20"), hoursWorked: 0, wageEarned: 0 },
+    { id: 4, name: "Anjali Nair", gender: "Female", address: "Kochi, Kerala", startDate: new Date("2023-04-10"), hoursWorked: 8, wageEarned: 160 },
+    { id: 5, name: "Arjun Iyer", gender: "Non-Binary", address: "Chennai, Tamil Nadu", startDate: new Date("2023-05-05"), hoursWorked: 4, wageEarned: 80 }
+  ];
+  
+  // Log all employee payroll details
+  console.log("Employee Payroll Data:");
+  employeePayrollDataArray.forEach((employee) => {
+    console.log(
+      `ID: ${employee.id}, Name: ${employee.name}, Gender: ${employee.gender}, Address: ${employee.address}, Start Date: ${employee.startDate.toDateString()}, Hours Worked: ${employee.hoursWorked}, Wage Earned: $${employee.wageEarned}`
+    );
+  });
+  
+  // Filter employees who joined after a specific date
+  let startDateFilter = new Date("2023-03-01");
+  let filteredEmployees = employeePayrollDataArray.filter(
+    (employee) => employee.startDate > startDateFilter
+  );
+  
+  console.log("Employees who joined after 2023-03-01:");
+  filteredEmployees.forEach((employee) =>
+    console.log(
+      `Name: ${employee.name}, Gender: ${employee.gender}, Address: ${employee.address}, Start Date: ${employee.startDate.toDateString()}`
+    )
+  );
   
