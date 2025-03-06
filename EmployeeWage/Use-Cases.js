@@ -18,12 +18,12 @@ if (employeeStatus === PRESENT) {
 
 // UC3 - Refactor code to get working hours
 // Constants for work hours and wage per hour
-const PART_TIME_HOURS = 4;
-const FULL_TIME_HOURS = 8;
 const WAGE_PER_HOUR = 20;
 const MAX_WORKING_HOURS = 160;
 const MAX_WORKING_DAYS = 20;
-
+// UC9 Arrow Functions
+const FULL_TIME_HOURS = 8;
+const PART_TIME_HOURS = 4
 // Function to determine work hours based on work type
 function getWorkHours(workType) {
   switch (workType) {
@@ -45,6 +45,7 @@ let totalWorkingHours = 0;
 let totalWorkingDays = 0;
 let totalWages = 0;
 let dailyWageArray = []; 
+let dayWiseWageMap = new Map(); 
 
 // While loop to calculate wages till conditions are met
 while (totalWorkingHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
@@ -72,6 +73,9 @@ while (totalWorkingHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_D
     dailyWage: dailyWage,
   });
 
+  // UC7 - Store the daily wage in a map
+  dayWiseWageMap.set(totalWorkingDays, dailyWage);
+
   // Log daily details (optional)
   console.log(
     `Day ${totalWorkingDays}: Worked ${dailyHours} hours. Daily wage: $${dailyWage}. Total hours: ${totalWorkingHours}`
@@ -96,6 +100,14 @@ dailyWageArray = [
     { day: 5, dailyWage: 0 },
   ];
   
+
+// Log final details
+console.log(`Total Working Days: ${totalWorkingDays}`);
+console.log(`Total Working Hours: ${totalWorkingHours}`);
+console.log(`Total Monthly Wages: $${totalWages}`);
+console.log("Daily Wage Array Details:", dailyWageArray);
+console.log("Day-Wise Wage Map:", dayWiseWageMap);
+
   // a. Calculate total wage using reduce method
   let totalWage = dailyWageArray.reduce((total, record) => total + record.dailyWage, 0);
   console.log("Total Wage:", totalWage);
@@ -123,4 +135,46 @@ dailyWageArray = [
   // g. Find the number of days the Employee Worked
   let workedDays = dailyWageArray.filter(record => record.dailyWage > 0).length;
   console.log("Number of Days Worked:", workedDays);
+
+// UC8 Use Map to calculate total wage
+let totalWageFromMap = 0;
+dayWiseWageMap.forEach(wage => {
+  totalWageFromMap += wage;
+});
+console.log("Total Wage (Using Map):", totalWageFromMap);
+
+// UC9 Arrow Function
+// Daily Wage Map and Daily Hour Map
+let dailyWageMap = new Map([
+  [1, 160],
+  [2, 80],
+  [3, 0],
+  [4, 160],
+  [5, 40],
+]);
+
+let dailyHourMap = new Map([
+  [1, 8],
+  [2, 4],
+  [3, 0],
+  [4, 8],
+  [5, 2],
+]);
+
+// a. Calculate total wage and total hours worked using arrow functions
+totalWage = [...dailyWageMap.values()].reduce((total, wage) => total + wage, 0);
+let totalHours = [...dailyHourMap.values()].reduce((total, hours) => total + hours, 0);
+
+console.log("Total Wage:", totalWage);
+console.log("Total Hours Worked:", totalHours);
+
+// b. Show full working days, part working days, and no working days using arrow functions
+let fullWorkingDays = [...dailyHourMap.entries()].filter(([day, hours]) => hours === FULL_TIME_HOURS).map(([day]) => day);
+let partWorkingDays = [...dailyHourMap.entries()].filter(([day, hours]) => hours === PART_TIME_HOURS).map(([day]) => day);
+let noWorkingDays = [...dailyHourMap.entries()].filter(([day, hours]) => hours === 0).map(([day]) => day);
+
+console.log("Full Working Days:", fullWorkingDays);
+console.log("Part Working Days:", partWorkingDays);
+console.log("No Working Days:", noWorkingDays);
+
   
