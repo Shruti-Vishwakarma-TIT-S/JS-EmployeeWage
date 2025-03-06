@@ -177,4 +177,13 @@ console.log("Full Working Days:", fullWorkingDays);
 console.log("Part Working Days:", partWorkingDays);
 console.log("No Working Days:", noWorkingDays);
 
+// UC10 Ability to store data in a single object
+let fullTimeWages = dailyWageArray
+  .filter((record) => record.dailyWage === 160)
+  .map((record) => record.dailyWage);
+
+let averageFullTimeWage =
+  fullTimeWages.reduce((sum, wage) => sum + wage, 0) / fullTimeWages.length;
+
+console.log("Average Full-Time Wage:", averageFullTimeWage);
   
