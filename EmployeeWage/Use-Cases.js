@@ -21,6 +21,7 @@ if (employeeStatus === PRESENT) {
 const PART_TIME_HOURS = 4;
 const FULL_TIME_HOURS = 8;
 const WAGE_PER_HOUR = 20;
+const WORKING_DAYS_IN_MONTH = 20
 
 // Function to determine work hours based on work type
 function getWorkHours(workType) {
@@ -37,16 +38,27 @@ function getWorkHours(workType) {
   }
 }
 
-// Generate a random work type (0, 1, or 2)
-let workType = Math.floor(Math.random() * 3);
+// Variable to store total monthly wage
+let totalMonthlyWage = 0;
 
-// Calculate the daily wage based on work hours
-let workHours = getWorkHours(workType);
-let dailyWage = workHours * WAGE_PER_HOUR;
+// UC4 - Refactor to find wages of minimum 20 working days
+// Loop through each working day
+for (let day = 1; day <= WORKING_DAYS_IN_MONTH; day++) {
+  // Generate a random work type (0, 1, or 2) for each day
+  let workType = Math.floor(Math.random() * 3);
 
-// Log the result
-if (workHours === 0) {
-  console.log("No work today. Daily wage: $" + dailyWage);
-} else {
-  console.log("Worked " + workHours + " hours. Daily wage: $" + dailyWage);
+  // Get the work hours for the day
+  let workHours = getWorkHours(workType);
+
+  // Calculate daily wage and add it to the total monthly wage
+  let dailyWage = workHours * WAGE_PER_HOUR;
+  totalMonthlyWage += dailyWage;
+
+  // Log daily details (optional)
+  console.log(
+    `Day ${day}: Worked ${workHours} hours. Daily wage: $${dailyWage}`
+  );
 }
+
+// Log the total wage for the month
+console.log("Total monthly wage: $" + totalMonthlyWage);
