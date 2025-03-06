@@ -44,6 +44,7 @@ function getWorkHours(workType) {
 let totalWorkingHours = 0;
 let totalWorkingDays = 0;
 let totalWages = 0;
+let dailyWageArray = []; 
 
 // While loop to calculate wages till conditions are met
 while (totalWorkingHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS) {
@@ -65,6 +66,12 @@ while (totalWorkingHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_D
   // Add the daily wage to total wages
   totalWages += dailyWage;
 
+  // UC6 Store the daily wage in the array
+  dailyWageArray.push({
+    day: totalWorkingDays,
+    dailyWage: dailyWage,
+  });
+
   // Log daily details (optional)
   console.log(
     `Day ${totalWorkingDays}: Worked ${dailyHours} hours. Daily wage: $${dailyWage}. Total hours: ${totalWorkingHours}`
@@ -75,3 +82,6 @@ while (totalWorkingHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_D
 console.log(`Total Working Days: ${totalWorkingDays}`);
 console.log(`Total Working Hours: ${totalWorkingHours}`);
 console.log(`Total Monthly Wages: $${totalWages}`);
+
+// UC6 Log the Daily Wage Array
+console.log("Daily Wage Details:", dailyWageArray);
